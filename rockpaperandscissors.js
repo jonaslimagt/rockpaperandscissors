@@ -26,5 +26,6 @@ function playRound(playerSelection, computerSelection){//Make a round of Rock Pa
 
 playRound(`rock`, `paper`);
 playRound(`paper`, `rock`);
+playRound(`paper`, `paper`);
 
-let playerChoice = prompt(`Rock, Paper or Scissors? `); //Player's choice
+// let playerChoice = prompt(`Rock, Paper or Scissors? `); //Player's choice
