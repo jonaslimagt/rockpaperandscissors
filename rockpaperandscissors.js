@@ -44,10 +44,11 @@ let computerScore = 0;
 
 for (let i = 1; i <= 5; i++){
     console.log(`Round ` + i);
-    playerChoice = prompt(`Rock, Paper or Scissors? `);
-    let computerAux = Math.floor(Math.random() * 3);
-    console.log(computerAux);
-    computerChoice = game_options[computerAux];
+    playerChoice = prompt(`Rock, Paper or Scissors? `).toLowerCase();
+    while (playerChoice != `rock` && playerChoice != `paper` && playerChoice != `scissors`){
+        playerChoice = prompt(`Invalid choice! Try again: `);
+    }
+    computerChoice = game_options[Math.floor(Math.random() * game_options.length)];
     let matchScore = playRound(playerChoice, computerChoice);
     switch(matchScore){
         case 0:
