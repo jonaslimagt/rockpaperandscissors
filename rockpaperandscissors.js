@@ -59,4 +59,11 @@ for (let i = 1; i <= 5; i++){
             break;
     }
     console.log(`Player ` + playerScore + ` x ` + computerScore + ` Computer`);
+    if (playerScore == 3){
+        console.log(`You Win the Match! Congratulations!`)
+        break;
+    } else if (computerScore == 3){
+        console.log(`You Lose the Match! Maybe you will have more luck in the next time`);
+        break;
+    }
 }
