@@ -1,34 +1,41 @@
-const game_options = [`rock`, `paper`, `scissors`]; //for computer choice in getComputerChoice() function
+const game_options = [`rock`, `paper`, `scissors`]; //for computer choice
 
-function playRound(playerSelection, computerSelection){//Make a round of Rock Paper Scissors
-    console.log(`You chose ` + playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1));
-    console.log(`Computer chose ` + computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1));
-    if (playerSelection === computerSelection){
-        console.log(`Tie! Seems we have a ` + playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1) + ` situation!`);
-        return 2;
-    } else if (playerSelection === `rock`){
-        if (computerSelection === `paper`){
+function playRound(game_options){//Make a round of Rock Paper Scissors
+    let playerChoice = prompt(`Rock, Paper or Scissors? `).toLowerCase();
+    while (playerChoice != `rock` && playerChoice != `paper` && playerChoice != `scissors`){
+        playerChoice = prompt(`Invalid choice! Try again: `);
+    }
+    let computerChoice = game_options[Math.floor(Math.random() * game_options.length)];
+    console.log(`You chose ` + playerChoice.charAt(0).toUpperCase() + playerChoice.slice(1));
+    console.log(`Computer chose ` + computerChoice.charAt(0).toUpperCase() + computerChoice.slice(1));
+    if (playerChoice === computerChoice){
+        console.log(`Tie! Seems we have a ` + playerChoice.charAt(0).toUpperCase() + playerChoice.slice(1) + ` situation!`);
+        console.log(`The round is undefined. Let's try again!`)
+        let score = playRound(game_options);
+        return score;
+    } else if (playerChoice === `rock`){
+        if (computerChoice === `paper`){
             console.log(`You Lose! Paper beats Rock`);
-            return 0;
+            return false;
         } else {
             console.log(`You Win! Rock beats Scissors`);
-            return 1;
+            return true;
         }
-    } else if (playerSelection === `paper`){
-        if (computerSelection === `scissors`){
+    } else if (playerChoice === `paper`){
+        if (computerChoice === `scissors`){
             console.log(`You Lose! Scissors beats Paper`);
-            return 0;
+            return false;
         } else {
             console.log(`You Win! Paper beats Rock`);
-            return 1;
+            return true;
         }
     } else {
-        if (computerSelection === `rock`){
+        if (computerChoice === `rock`){
             console.log(`You Lose! Rock beats Scissors`);
-            return 0;
+            return false;
         } else {
             console.log(`You Win! Scissors beats Paper`);
-            return 1;
+            return true;
         }
     }
 }
@@ -37,29 +44,18 @@ function playRound(playerSelection, computerSelection){//Make a round of Rock Pa
 // playRound(`paper`, `rock`);
 // playRound(`paper`, `paper`);
 
-let playerChoice;  //Player's choice variable
-let computerChoice; //Computer's choice variable
 let playerScore = 0;
 let computerScore = 0;
 
 for (let i = 1; i <= 5; i++){
     console.log(`Round ` + i);
-    playerChoice = prompt(`Rock, Paper or Scissors? `).toLowerCase();
-    while (playerChoice != `rock` && playerChoice != `paper` && playerChoice != `scissors`){
-        playerChoice = prompt(`Invalid choice! Try again: `);
-    }
-    computerChoice = game_options[Math.floor(Math.random() * game_options.length)];
-    let matchScore = playRound(playerChoice, computerChoice);
+    let matchScore = playRound(game_options);
     switch(matchScore){
-        case 0:
+        case false:
             computerScore++;
             break;
-        case 1:
+        case true:
             playerScore++;
-            break;
-        case 2:
-            playerScore++;
-            computerScore++;
             break;
     }
     console.log(`Player ` + playerScore + ` x ` + computerScore + ` Computer`);
