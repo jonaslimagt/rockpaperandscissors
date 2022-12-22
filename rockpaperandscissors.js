@@ -40,30 +40,30 @@ function playRound(game_options){//Make a round of Rock Paper Scissors
     }
 }
 
-// playRound(`rock`, `paper`);
-// playRound(`paper`, `rock`);
-// playRound(`paper`, `paper`);
+function game(){
+    let playerScore = 0;
+    let computerScore = 0;
 
-let playerScore = 0;
-let computerScore = 0;
-
-for (let i = 1; i <= 5; i++){
-    console.log(`Round ` + i);
-    let matchScore = playRound(game_options);
-    switch(matchScore){
-        case false:
-            computerScore++;
+    for (let i = 1; i <= 5; i++){
+        console.log(`Round ` + i);
+        let matchScore = playRound(game_options);
+        switch(matchScore){
+            case false:
+                computerScore++;
+                break;
+            case true:
+                playerScore++;
+                break;
+        }
+        console.log(`Player ` + playerScore + ` x ` + computerScore + ` Computer`);
+        if (playerScore == 3){
+            console.log(`You Win the Match! Congratulations!`)
             break;
-        case true:
-            playerScore++;
+        } else if (computerScore == 3){
+            console.log(`You Lose the Match! Maybe you will have more luck in the next time`);
             break;
-    }
-    console.log(`Player ` + playerScore + ` x ` + computerScore + ` Computer`);
-    if (playerScore == 3){
-        console.log(`You Win the Match! Congratulations!`)
-        break;
-    } else if (computerScore == 3){
-        console.log(`You Lose the Match! Maybe you will have more luck in the next time`);
-        break;
+        }
     }
 }
+
+game();
